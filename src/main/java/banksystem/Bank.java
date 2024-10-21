@@ -34,10 +34,9 @@ public class Bank {
     public String bankinformationenAnzeigenString() {
         return "\nBLZ: " + this.getBlz() + "\nBankname: " + this.getBankname();
     }
-    public static void transfer(Konto sender, Konto empfaenger, double betrag, int blz, int iban) {
+    public static void transfer(Konto sender, Konto empfaenger, double betrag, int blz, int iban) throws Exception {
         if (empfaenger == null || empfaenger.getBank() == null || empfaenger.getBank().getBlz() <= 0) {
-            System.out.println("Empfänger nicht vorhanden");
-            return;
+            throw new NullPointerException("Empfänger nicht vorhanden");
         }
         if (empfaenger.getBank().getBlz() != blz && empfaenger.getIban() != iban) {
             System.out.println("Überweisung fehlgeschlagen.\nIBAN und Bankleitzahl stimmen nicht überein.\n");
@@ -70,7 +69,7 @@ public class Bank {
         }
         return null;
     }
-    public void interaktivesMenu() {
+    public void interaktivesMenu() throws Exception {
         boolean running = true;
         String gebenKonto = "Geben Sie Ihre Kontonummer ein: ";
         String ungueltigKonto = "Ungültige Kontonummer";
@@ -112,7 +111,7 @@ public class Bank {
             }
         }
     }
-    private void ueberweisungInter(String gebenKonto, String ungueltigKonto, String ungueltigBetrag) {
+    private void ueberweisungInter(String gebenKonto, String ungueltigKonto, String ungueltigBetrag) throws Exception {
         System.out.println(gebenKonto);
         int ibansender = Integer.parseInt(scanner.nextLine());
         Konto senderkonto = findeKonto(ibansender);

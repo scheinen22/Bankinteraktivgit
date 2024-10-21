@@ -79,11 +79,11 @@ public class Konto extends Bank {
     }
     public void einzahlung(double betrag) {
         if (betrag <= 0) {
-            System.out.println("Einzahlung fehlgeschlagen: " + betrag + "liegt im nicht realistischen Bereich.");
+            System.out.println("Einzahlung fehlgeschlagen: " + betrag + "€ liegt im nicht realistischen Bereich.");
             return;
         }
         if (kunde.getBargeld() <= 0) {
-            System.out.println("Einzahlung fehlgeschlagen: Kein Bargeld vorhanden.");
+            System.out.println("Einzahlung fehlgeschlagen: Nicht genügend Bargeld vorhanden.");
             return;
         }
         double test = kunde.getBargeld();
