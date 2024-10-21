@@ -112,6 +112,10 @@ public class Konto extends Bank {
         this.transaktionsliste.add("Abhebung: -" + betrag + " €");
     }
     public boolean transaktion(double betrag, Konto empfaenger, int blz, int iban) {
+        if (betrag <= 0) {
+            System.out.println("Abgelehnt: Der Betrag " + betrag + " ist nicht zulässig.");
+            return false;
+        }
         if (betrag > this.ueberweisungslimit) {
             System.out.println("Abgelehnt: Der Betrag " + betrag + " liegt über dem Überweisungslimit.\n");
             return false;
