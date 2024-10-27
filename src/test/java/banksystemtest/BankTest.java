@@ -4,12 +4,14 @@ import banksystem.Bank;
 import banksystem.Konto;
 import banksystem.Kunde;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import static banksystem.Bank.transfer;
-import static org.hamcrest.CoreMatchers.nullValue;
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.Assert.assertThat;
 
+@ExtendWith(BankParameterResolver.class)
 class BankTest {
 
     Konto konto = new Konto(new Bank(12345, "Sparkasse"), 432323, 28923.12, -2000, 2000, new Kunde("Jochen", "Schmidt", "21.12.2000", "Teststraße", 1076.88));
